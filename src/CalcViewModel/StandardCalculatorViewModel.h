@@ -109,7 +109,7 @@ namespace CalculatorApp
             static property Platform::String
                 ^ IsBitFlipCheckedPropertyName { Platform::String ^ get() { return Platform::StringReference(L"IsBitFlipChecked"); } }
 
-            property bool IsBinaryBitFlippingEnabled
+                property bool IsBinaryBitFlippingEnabled
             {
                 bool get()
                 {
@@ -149,6 +149,7 @@ namespace CalculatorApp
                         {
                             IsScientific = false;
                             IsProgrammer = false;
+                            IsCost = false;
                         }
                         RaisePropertyChanged(L"IsStandard");
                     }
@@ -170,8 +171,31 @@ namespace CalculatorApp
                         {
                             IsStandard = false;
                             IsProgrammer = false;
+                            IsCost = false;
                         }
                         RaisePropertyChanged(L"IsScientific");
+                    }
+                }
+            }
+            
+            property bool IsCost
+            {
+                bool get()
+                {
+                    return m_isCost;
+                }
+                void set(bool value)
+                {
+                    if (m_isCost != value)
+                    {
+                        m_isCost = value;
+                        if (value)
+                        {
+                            IsStandard = false;
+                            IsProgrammer = false;
+                            IsScientific = false;
+                        }
+                        RaisePropertyChanged(L"IsCost");
                     }
                 }
             }
@@ -197,6 +221,7 @@ namespace CalculatorApp
                         {
                             IsStandard = false;
                             IsScientific = false;
+                            IsCost = false;
                         }
                         RaisePropertyChanged(L"IsProgrammer");
                     }
@@ -205,7 +230,7 @@ namespace CalculatorApp
             static property Platform::String
                 ^ IsProgrammerPropertyName { Platform::String ^ get() { return Platform::StringReference(L"IsProgrammer"); } }
 
-            property bool IsAlwaysOnTop
+                property bool IsAlwaysOnTop
             {
                 bool get()
                 {
@@ -415,6 +440,7 @@ namespace CalculatorApp
             bool m_isStandard;
             bool m_isScientific;
             bool m_isProgrammer;
+            bool m_isCost;
             bool m_isAlwaysOnTop;
             bool m_isBinaryBitFlippingEnabled;
             bool m_isBitFlipChecked;

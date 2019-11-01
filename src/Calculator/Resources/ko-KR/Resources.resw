@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1152,6 +1152,10 @@
   <data name="CategoryName_AngleText" xml:space="preserve">
     <value>각도</value>
     <comment>Unit conversion category name called Angle</comment>
+  </data>
+  <data name="CategoryName_CostText" xml:space="preserve">
+    <value>비용 계산</value>
+    <comment>Unit conversion category name called Cost</comment>
   </data>
   <data name="CategoryName_CurrencyText" xml:space="preserve">
     <value>통화 환율</value>
@@ -2691,6 +2695,10 @@
     <value>AB</value>
     <comment>AccessKey for the About button. {StringCategory="Accelerator"}</comment>
   </data>
+  <data name="CostCalculationModeAccessKey" xml:space="preserve">
+    <value>4</value>
+    <comment>AccessKey for the Date Calculation mode navbar item. {StringCategory="Accelerator"}</comment>
+  </data>  
   <data name="DateCalculationModeAccessKey" xml:space="preserve">
     <value>4</value>
     <comment>AccessKey for the Date Calculation mode navbar item. {StringCategory="Accelerator"}</comment>

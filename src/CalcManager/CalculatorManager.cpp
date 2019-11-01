@@ -150,6 +150,12 @@ namespace CalculationManager
             m_programmerCalculatorEngine->ProcessCommand(IDC_CLEAR);
         }
 
+        if (m_CostCalculatorEngine)
+        {
+            m_CostCalculatorEngine->ProcessCommand(IDC_DEG);
+            m_CostCalculatorEngine->ProcessCommand(IDC_CLEAR);
+        }
+
         if (clearMemory)
         {
             this->MemorizedNumberClearAll();
@@ -210,6 +216,22 @@ namespace CalculationManager
         m_currentCalculatorEngine->ChangePrecision(static_cast<int>(CalculatorPrecision::ProgrammerModePrecision));
     }
 
+    void CalculatorManager::SetCostMode()
+    {
+        if (!m_CostCalculatorEngine)
+        {
+            m_CostCalculatorEngine =
+                make_unique<CCalcEngine>(false /* Respect Order of Operations */, false /* Set to Integer Mode */, m_resourceProvider, this, m_pStdHistory);
+        }
+
+        m_currentCalculatorEngine = m_CostCalculatorEngine.get();
+        m_currentCalculatorEngine->ProcessCommand(IDC_DEC);
+        m_currentCalculatorEngine->ProcessCommand(IDC_CLEAR);
+        m_currentCalculatorEngine->ChangePrecision(static_cast<int>(CalculatorPrecision::CostModePrecision));
+        UpdateMaxIntDigits();
+        m_pHistory = m_pStdHistory.get();
+    }
+
     /// <summary>
     /// Send command to the Calc Engine
     /// Cast Command Enum to OpCode.
@@ -221,7 +243,7 @@ namespace CalculationManager
         // When the expression line is cleared, we save the current state, which includes,
         // primary display, memory, and degree mode
         if (command == Command::CommandCLEAR || command == Command::CommandEQU || command == Command::ModeBasic || command == Command::ModeScientific
-            || command == Command::ModeProgrammer)
+            || command == Command::ModeProgrammer || command == Command::ModeCost)
         {
             switch (command)
             {
@@ -233,6 +255,9 @@ namespace CalculationManager
                 break;
             case Command::ModeProgrammer:
                 this->SetProgrammerMode();
+                break;
+            case Command::ModeCost:
+                this->SetCostMode();
                 break;
             default:
                 m_currentCalculatorEngine->ProcessCommand(static_cast<OpCode>(command));

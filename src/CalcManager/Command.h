@@ -205,6 +205,8 @@ namespace CalculationManager
         CommandWord = 319,
         CommandByte = 320,
 
+        ModeCost = 400,
+
         CommandBINEDITSTART = 700,
         CommandBINPOS0 = 700,
         CommandBINPOS1 = 701,

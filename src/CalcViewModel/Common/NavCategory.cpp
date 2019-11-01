@@ -46,10 +46,11 @@ static constexpr int DATA_ID = 13;
 static constexpr int PRESSURE_ID = 14;
 static constexpr int ANGLE_ID = 15;
 static constexpr int CURRENCY_ID = 16;
+static constexpr int COST_ID = 17;
 // ^^^ THESE CONSTANTS SHOULD NEVER CHANGE ^^^
 
 // The order of items in this list determines the order of items in the menu.
-static constexpr array<const NavCategoryInitializer, 17> s_categoryManifest = { NavCategoryInitializer{ ViewMode::Standard,
+static constexpr array<const NavCategoryInitializer, 18> s_categoryManifest = { NavCategoryInitializer{ ViewMode::Standard,
                                                                                                         STANDARD_ID,
                                                                                                         L"Standard",
                                                                                                         L"StandardMode",
@@ -184,7 +185,16 @@ static constexpr array<const NavCategoryInitializer, 17> s_categoryManifest = { 
                                                                                                         L"\uF515",
                                                                                                         CategoryGroupType::Converter,
                                                                                                         MyVirtualKey::None,
-                                                                                                        SUPPORTS_NEGATIVE } };
+                                                                                                        SUPPORTS_NEGATIVE },
+                                                                                NavCategoryInitializer{ ViewMode::Cost,
+                                                                                                        COST_ID,
+                                                                                                        L"Cost",
+                                                                                                        L"CategoryName_Cost",
+                                                                                                        L"\uE8EF",
+                                                                                                        CategoryGroupType::Calculator,
+                                                                                                        MyVirtualKey::Number5,
+                                                                                                        POSITIVE_ONLY },
+};
 
 // This function should only be used when storing the mode to app data.
 int NavCategory::Serialize(ViewMode mode)

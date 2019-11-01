@@ -44,7 +44,9 @@ namespace CalculatorApp
             Data = 13,
             Pressure = 14,
             Angle = 15,
-            Currency = 16
+            Currency = 16,
+            //추가부분
+            Cost = 17
         };
 
     public

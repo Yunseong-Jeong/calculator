@@ -18,13 +18,15 @@ namespace CalculationManager
         StandardMode,
         ScientificMode,
         ProgrammerMode,
+        CostMode
     };
 
     enum class CalculatorPrecision
     {
         StandardModePrecision = 16,
         ScientificModePrecision = 32,
-        ProgrammerModePrecision = 64
+        ProgrammerModePrecision = 64,
+        CostModePrecision=16
     };
 
     // Numbering continues from the Enum Command from Command.h
@@ -50,6 +52,7 @@ namespace CalculationManager
         std::unique_ptr<CCalcEngine> m_scientificCalculatorEngine;
         std::unique_ptr<CCalcEngine> m_standardCalculatorEngine;
         std::unique_ptr<CCalcEngine> m_programmerCalculatorEngine;
+        std::unique_ptr<CCalcEngine> m_CostCalculatorEngine;
         IResourceProvider* const m_resourceProvider;
         bool m_inHistoryItemLoadMode;
 
@@ -108,6 +111,7 @@ namespace CalculationManager
         void SetStandardMode();
         void SetScientificMode();
         void SetProgrammerMode();
+        void SetCostMode();
         void SendCommand(_In_ Command command);
 
         void MemorizeNumber();

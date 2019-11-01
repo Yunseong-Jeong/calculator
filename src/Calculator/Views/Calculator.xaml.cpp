@@ -40,6 +40,7 @@ using namespace Windows::UI::ViewManagement;
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsStandard);
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsScientific);
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsProgrammer);
+//DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsCost);
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsAlwaysOnTop);
 
 Calculator::Calculator()
@@ -161,6 +162,10 @@ std::wstring Calculator::GetCurrentLayoutState()
     {
         state = L"Scientific";
     }
+    /*else if (IsCost)
+    {
+        state = L"Cost";
+    }*/
     else
     {
         state = L"Standard";
@@ -184,6 +189,12 @@ void Calculator::UpdateViewState()
         Model->IsDecimalEnabled = true;
         ResultsMVisualStateTrigger->MinWindowHeight = 544;
     }
+    /*else if (IsCost)
+    {
+        state = L"Cost";
+        Model->IsDecimalEnabled = true;
+        ResultsMVisualStateTrigger->MinWindowHeight = 1;
+    }*/
     else
     {
         state = L"Standard";

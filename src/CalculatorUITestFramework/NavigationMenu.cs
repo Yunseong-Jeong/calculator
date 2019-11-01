@@ -24,7 +24,8 @@ namespace CalculatorUITestFramework
         Power,
         Data,
         Pressure,
-        Angle
+        Angle,
+        Cost
     }
     public class NavigationMenu
     {
@@ -92,6 +93,9 @@ namespace CalculatorUITestFramework
                     break;
                 case CalculatorMode.Angle:
                     modeAccessibilityId = "Angle";
+                    break;
+                case CalculatorMode.Cost:
+                    modeAccessibilityId = "Cost";
                     break;
                 default:
                     throw (new ArgumentException("The mode is not valid"));

@@ -56,6 +56,7 @@ public
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsStandard, false);
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsScientific, false);
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsProgrammer, false);
+        //DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsCost, false);
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsAlwaysOnTop, false);
 
         COMMAND_FOR_METHOD(HistoryButtonPressed, Calculator::ToggleHistoryFlyout);
