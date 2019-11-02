@@ -196,6 +196,9 @@ public
         BitflipButton = 1000,
         FullKeypadButton = 1001,
         //추가부분
-        IsCost = (int)CM::Command::ModeCost
+        IsCost = (int)CM::Command::ModeCost,
+        Dollor = (int)CM::Command::CommandDollor,
+        Won = (int)CM::Command::CommandWon
+
     };
 }

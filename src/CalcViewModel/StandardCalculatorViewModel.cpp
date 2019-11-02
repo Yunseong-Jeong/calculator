@@ -29,12 +29,13 @@ using namespace Utils;
 constexpr int StandardModePrecision = 16;
 constexpr int ScientificModePrecision = 32;
 constexpr int ProgrammerModePrecision = 64;
-
+constexpr int CostModePrecision = 16;
 namespace
 {
     StringReference IsStandardPropertyName(L"IsStandard");
     StringReference IsScientificPropertyName(L"IsScientific");
     StringReference IsProgrammerPropertyName(L"IsProgrammer");
+    StringReference IsCostPropertyName(L"Cost");
     StringReference IsAlwaysOnTopPropertyName(L"IsAlwaysOnTop");
     StringReference DisplayValuePropertyName(L"DisplayValue");
     StringReference CalculationResultAutomationNamePropertyName(L"CalculationResultAutomationName");
@@ -720,6 +721,10 @@ void StandardCalculatorViewModel::OnPasteCommand(Object ^ parameter)
         NumberBase = GetNumberBase();
         bitLengthType = m_valueBitLength;
     }
+    else if (IsCost)
+    {
+        mode = ViewMode::Cost;
+    }
     else
     {
         mode = ViewMode::Standard;
@@ -1011,6 +1016,12 @@ NumbersAndOperatorsEnum StandardCalculatorViewModel::MapCharacterToButtonId(cons
     case 'F':
         mappedValue = NumbersAndOperatorsEnum::F;
         break;
+    case '$':
+        mappedValue = NumbersAndOperatorsEnum::Dollor;
+        break;
+    case '\\':
+        mappedValue = NumbersAndOperatorsEnum::Won;
+        break;
     default:
         // For the decimalSeparator, we need to respect the user setting.
         if (ch == m_decimalSeparator)
@@ -1166,6 +1177,13 @@ void StandardCalculatorViewModel::OnPropertyChanged(String ^ propertyname)
             OnButtonPressed(NumbersAndOperatorsEnum::IsStandardMode);
         }
     }
+    else if (propertyname == IsCostPropertyName)
+    {
+        if (IsCost)
+        {
+            OnButtonPressed(NumbersAndOperatorsEnum::IsStandardMode);
+        }
+    }
     else if (propertyname == DisplayValuePropertyName)
     {
         RaisePropertyChanged(CalculationResultAutomationNamePropertyName);
@@ -1204,6 +1222,11 @@ void StandardCalculatorViewModel::SetCalculatorType(ViewMode targetState)
         IsProgrammer = true;
         ResetDisplay();
         SetPrecision(ProgrammerModePrecision);
+        break;
+    case ViewMode::Cost:
+        IsCost = true;
+        ResetDisplay();
+        SetPrecision(CostModePrecision);
         break;
     }
 }
@@ -1887,6 +1910,10 @@ ViewMode StandardCalculatorViewModel::GetCalculatorMode()
     else if (IsScientific)
     {
         return ViewMode::Scientific;
+    }
+    else if (IsCost)
+    {
+        return  ViewMode::Cost;
     }
     return ViewMode::Programmer;
 }
